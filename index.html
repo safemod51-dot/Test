@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Share Flex Message Ready</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #eef2ff;
+        }
+        .msg {
+            display: none;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+        #errorMsg { 
+            color: #d9534f;
+            word-break: break-word;
+            max-width: 80vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="msg" id="loadingMsg">⏳ กำลังเริ่มต้น LIFF และเตรียมการแชร์...</div>
+    <div class="msg" id="successMsg">✅ แชร์ให้เพื่อน ๆ สำเร็จแล้ว</div>
+    <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
+
+    <script>
+        // แก้ไขโครงสร้าง Flex Message ให้ถูกต้อง
+        const flexMessage = {
+            type: "flex",
+            altText: "📚 แนะนำหนังสือน่าอ่าน โดย นตท.ชั้นปีที่ 2",
+            contents: {
+                type: "carousel",
+                contents: [
+                    {
+                        type: "bubble",
+                        body: {
+                            type: "box",
+                            layout: "vertical",
+                            contents: [
+                                {
+                                    type: "image",
+                                    url: "https://img5.pic.in.th/file/secure-sv1/ezgif.com-gif-to-apng-converter774e1e36c8401d2a.png",
+                                    size: "full",
+                                    animated: true,
+                                    aspectMode: "cover",
+                                    aspectRatio: "2.3:3"
+                                },
+                                {
+                                    type: "button",
+                                    action: {
+                                        type: "uri",
+                                        uri: "https://liff.line.me/2008876745-glBf6NL0",
+                                        label: "ดูรายละเอียด"
+                                    },
+                                    position: "absolute",
+                                    offsetTop: "84%",
+                                    offsetEnd: "26%",
+                                    offsetStart: "49%"
+                                }
+                            ],
+                            paddingAll: "none"
+                        }
+                    },
+                    {
+                        type: "bubble",
+                        hero: {
+                            type: "image",
+                            url: "https://img5.pic.in.th/file/secure-sv1/1-ezgif.com-gif-to-apng-converter5eca0a56dfe50288.png",
+                            size: "full",
+                            aspectMode: "cover",
+                            aspectRatio: "2.9:3",
+                            animated: true
+                        },
+                        body: {
+                            type: "box",
+                            layout: "vertical",
+                            backgroundColor: "#9370DB",
+                            contents: [
+                                {
+                                    type: "text",
+                                    text: "นักเรียนนายสิบทหารบก",
+                                    weight: "bold",
+                                    size: "md",
+                                    color: "#b0120a",
+                                    wrap: true
+                                },
+                                {
+                                    type: "text",
+                                    text: "แนะนำโดย : นตท.รัตนตรัย ไชยพรม",
+                                    size: "sm",
+                                    color: "#6A1B9A",
+                                    wrap: true
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        type: "bubble",
+                        hero: {
+                            type: "image",
+                            url: "https://img5.pic.in.th/file/secure-sv1/3-ezgif.com-gif-to-apng-convertera1aa5eba465114b5.png",
+                            size: "full",
+                            aspectMode: "cover",
+                            aspectRatio: "2.9:3",
+                            animated: true
+                        },
+                        body: {
+                            type: "box",
+                            layout: "vertical",
+                            backgroundColor: "#9370DB",
+                            contents: [
+                                {
+                                    type: "text",
+                                    text: "A Little History of the United States",
+                                    weight: "bold",
+                                    size: "md",
+                                    color: "#d1c4e9",
+                                    wrap: true
+                                },
+                                {
+                                    type: "text",
+                                    text: "แนะนำโดย : นตท.สิรวิชญ์ ชินบุตร",
+                                    size: "sm",
+                                    color: "#880e4f",
+                                    wrap: true
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        type: "bubble",
+                        hero: {
+                            type: "image",
+                            url: "https://img2.pic.in.th/2-ezgif.com-gif-to-apng-converterd995966e31c5e1b5.png",
+                            size: "full",
+                            aspectMode: "cover",
+                            aspectRatio: "2.9:3",
+                            animated: true
+                        },
+                        body: {
+                            type: "box",
+                            layout: "vertical",
+                            backgroundColor: "#9370DB",
+                            contents: [
+                                {
+                                    type: "text",
+                                    text: "ทุกคำพูดมีพลัง",
+                                    weight: "bold",
+                                    size: "md",
+                                    color: "#ffeb3b",
+                                    wrap: true
+                                },
+                                {
+                                    type: "text",
+                                    text: "แนะนำโดย : นตท.สิริไชย เร่งสิริกุล",
+                                    size: "sm",
+                                    color: "#bf360c",
+                                    wrap: true
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        };
+
+        function displayMessage(id) {
+            document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        async function main() {
+            displayMessage('loadingMsg');
+            
+            try {
+                // เริ่มต้น LIFF
+                await liff.init({ liffId: "2008876745-glBf6NL0" });  
+
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                    return;
+                }
+                
+                if (!liff.isApiAvailable("shareTargetPicker")) {
+                    throw new Error("เครื่องมือนี้ต้องเปิดผ่านแอป LINE เท่านั้น");
+                }
+
+                document.getElementById("loadingMsg").style.display = "none";
+
+                // เรียกใช้ Share Target Picker
+                const result = await liff.shareTargetPicker([flexMessage]);
+                
+                if (result) {
+                    displayMessage('successMsg');
+                    setTimeout(() => liff.closeWindow(), 2000);
+                } else {
+                    liff.closeWindow();
+                }
+
+            } catch (err) {
+                console.error("Share Error:", err);
+                const errorMsgElement = document.getElementById('errorMsg');
+                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาด: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
+                displayMessage('errorMsg'); 
+                setTimeout(() => liff.closeWindow(), 5000); 
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
