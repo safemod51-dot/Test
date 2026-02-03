@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Flex Message Ready</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #eef2ff;
+        }
+        .msg {
+            display: none;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+        #errorMsg { 
+            color: #d9534f;
+            word-break: break-word;
+            max-width: 80vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="msg" id="loadingMsg">⏳⏳ กำลังเตรียมการแชร์...รอสักครู่ ⏳⏳</div>
+    <div class="msg" id="successMsg">✅ แชร์ให้เพื่อน ๆ สำเร็จแล้ว</div>
+    <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
+
+    <script>
+        // 1. กำหนดตัวแปร flexData ให้ถูกต้องตามโครงสร้าง LINE Messaging API
+        const flexData = {
+            type: "flex",
+            altText: "เรียนเชิญร่วมงานเกียรติยศจักรดาว ประจำปี ๒๕๖๙", // ข้อความที่จะโชว์ในแถบแจ้งเตือน
+            contents: {
+                "type": "bubble",
+                "size": "giga",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "image",
+                            "url": "https://img2.pic.in.th/copy.png",
+                            "animated": true,
+                            "aspectMode": "cover",
+                            "aspectRatio": "3.5:5",
+                            "size": "full"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "uri": "https://www.afaps.ac.th/subdomain/sed/gallery/picfram/jakdao-afaps01.pdf",
+                                "label": " "
+                            },
+                            "position": "absolute",
+                            "offsetTop": "73%",
+                            "offsetEnd": "52%",
+                            "offsetStart": "5%",
+                            "offsetBottom": "20%"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "uri": "https://www.afaps.ac.th/subdomain/sed/gallery/picfram/jakdao-afaps02.pdf",
+                                "label": " "
+                            },
+                            "position": "absolute",
+                            "offsetTop": "73%",
+                            "offsetEnd": "5%",
+                            "offsetStart": "54%",
+                            "offsetBottom": "20%"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "uri": "https://www.afaps.ac.th/subdomain/sed/gallery/picfram/schedule69.pdf",
+                                "label": " "
+                            },
+                            "position": "absolute",
+                            "offsetTop": "84.5%",
+                            "offsetEnd": "52%",
+                            "offsetStart": "13%",
+                            "offsetBottom": "9%"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "uri": "https://liff.line.me/2007236505-b2JwzKC1",
+                                "label": " "
+                            },
+                            "position": "absolute",
+                            "offsetTop": "85.5%",
+                            "offsetEnd": "10%",
+                            "offsetStart": "54%",
+                            "offsetBottom": "9%"
+                        }
+                    ],
+                    "paddingAll": "0px"
+                }
+            }
+        };
+
+        function displayMessage(id) {
+            document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
+            const target = document.getElementById(id);
+            if (target) target.style.display = 'block';
+        }
+
+        async function main() {
+            displayMessage('loadingMsg');
+            
+            try {
+                // 1. Initial LIFF
+                await liff.init({ liffId: "2007236505-b2JwzKC1" });  
+
+                // 2. Check Login
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                    return;
+                }
+                
+                // 3. Check API Availability
+                if (!liff.isApiAvailable("shareTargetPicker")) {
+                    throw new Error("API shareTargetPicker ไม่รองรับ หรือกรุณาเปิดในแอป LINE");
+                }
+
+                // 4. สั่งเปิด Share Target Picker
+                const result = await liff.shareTargetPicker([flexData]);
+                
+                if (result) {
+                    // กรณีส่งสำเร็จ
+                    displayMessage('successMsg');
+                    setTimeout(() => liff.closeWindow(), 2000);
+                } else {
+                    // กรณีผู้ใช้กดยกเลิก
+                    liff.closeWindow();
+                }
+
+            } catch (err) {
+                console.error("Share Error:", err);
+                const errorMsgElement = document.getElementById('errorMsg');
+                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาด: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
+                displayMessage('errorMsg'); 
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
