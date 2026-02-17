@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Flex Message Ready</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #eef2ff;
+        }
+        .msg {
+            display: none;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+        #errorMsg { 
+            color: #d9534f;
+            word-break: break-word;
+            max-width: 80vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="msg" id="loadingMsg">⏳ กำลังเริ่มต้นและเตรียมการแชร์...</div>
+    <div class="msg" id="successMsg">✅ แชร์ให้เพื่อน ๆ สำเร็จแล้ว</div>
+    <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
+
+    <script>
+        const flexMessage = {
+            type: "flex",
+            altText: "📚 ประชาสัมพันธ์หนังสือน่าอ่าน",
+            contents:
+	// --- นำ Code ที่ออกแบบแล้วมาวาง ตั้งแต่ส่วนนี้ ---
+{
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://img5.pic.in.th/file/secure-sv1/aa54d8db2e7a5602d223bd6b2a6d72b4.png",
+        "aspectRatio": "2:2.83",
+        "aspectMode": "fit",
+        "size": "full"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "uri": "https://liff.line.me/2009151440-3wqq6Dj6",
+          "label": "."
+        },
+        "position": "absolute",
+        "offsetTop": "90%",
+        "offsetEnd": "52%",
+        "offsetStart": "8%"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "uri": "https://www.facebook.com/share/v/1QYS3hMRVN/",
+          "label": "."
+        },
+        "position": "absolute",
+        "offsetTop": "90%",
+        "offsetEnd": "8%",
+        "offsetStart": "52%"
+      }
+    ],
+    "paddingAll": "none",
+    "paddingTop": "none",
+    "paddingStart": "none",
+    "paddingEnd": "none",
+    "paddingBottom": "none"
+  }
+}
+
+
+
+
+
+
+
+
+            // --- สิ้นสุดการวาง Code ---
+        }; 
+
+
+        function displayMessage(id) {
+            document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        async function main() {
+            displayMessage('loadingMsg');
+            
+            try {
+
+                // -----แก้ไข LiffId ของตัวเองให้ถูกต้อง ------------
+
+                await liff.init({ liffId: "2009151440-3wqq6Dj6" });  
+
+
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                    return;
+                }
+                
+                if (!liff.isApiAvailable("shareTargetPicker")) {
+                    throw new Error("API shareTargetPicker ไม่รองรับ (โปรดเปิดในแอป LINE)");
+                }
+
+                document.getElementById("loadingMsg").style.display = "none";
+
+                const result = await liff.shareTargetPicker([flexMessage]);
+                
+                if (result) {
+                    displayMessage('successMsg');
+                    setTimeout(() => liff.closeWindow(), 2000);
+                } else {
+ 
+                    liff.closeWindow();
+                }
+
+            } catch (err) {
+                console.error("Share Error:", err);
+                const errorMsgElement = document.getElementById('errorMsg');
+                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาดในการแชร์: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
+                
+                displayMessage('errorMsg'); 
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
