@@ -38,101 +38,94 @@
     <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
 
     <script>
+        // โครงสร้าง Flex Message ที่ถูกต้อง
         const flexMessage = {
             type: "flex",
             altText: "📚 ประชาสัมพันธ์หนังสือน่าอ่าน",
-            contents:
-	// --- นำ Code ที่ออกแบบแล้วมาวาง ตั้งแต่ส่วนนี้ ---
-
-{
-  "type": "bubble",
-  "size": "giga",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "image",
-        "url": "https://img2.pic.in.th/-800-x-600-px-1.png",
-        "size": "full",
-        "aspectMode": "fit",
-        "aspectRatio": "4:3"
-      },
-      {
-        "type": "button",
-        "action": {
-          "type": "message",
-          "label": ".",
-          "text": "อาจารย์หนุ่ม 300 บาท + ค่าเด็ก 100 บาท รวม 400 บาท TTB 21222424 ชื่อ บช. Totti"
-        },
-        "position": "absolute",
-        "offsetTop": "72%",
-        "offsetBottom": "15%",
-        "offsetStart": "16%",
-        "offsetEnd": "73%"
-      },
-      {
-        "type": "button",
-        "action": {
-          "type": "message",
-          "label": ".",
-          "text": "อาจารย์แพท 300 บาท + ค่าเด็ก 300 บาท รวม 600 บาท TTB 21222424 ชื่อ บช. Totti"
-        },
-        "position": "absolute",
-        "offsetTop": "52%",
-        "offsetBottom": "35%",
-        "offsetStart": "30%",
-        "offsetEnd": "58%"
-      },
-      {
-        "type": "button",
-        "action": {
-          "type": "message",
-          "label": ".",
-          "text": "อาจารย์ลือ ประธานฯ 1,000 บาท + ค่าเด็ก 800 บาท รวม 1,800 บาท TTB 21222424 ชื่อ บช. Totti"
-        },
-        "position": "absolute",
-        "offsetTop": "40%",
-        "offsetBottom": "43%",
-        "offsetStart": "54%",
-        "offsetEnd": "30%"
-      },
-      {
-        "type": "button",
-        "action": {
-          "type": "uri",
-          "label": "  ",
-          "uri": "https://www.canva.com/design/DAHBr5zlAzM/LFwGQyVdjxVZd7iyJzj90g/watch?utm_content=DAHBr5zlAzM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h79591bc35e"
-        },
-        "position": "absolute",
-        "offsetTop": "73%",
-        "offsetBottom": "12%",
-        "offsetStart": "38%",
-        "offsetEnd": "40%"
-      },
-      {
-        "type": "button",
-        "action": {
-          "type": "uri",
-          "label": "  ",
-          "uri": "https://liff.line.me/2009151440-vdon4Ow7"
-        },
-        "position": "absolute",
-        "offsetTop": "89%",
-        "offsetBottom": "1%",
-        "offsetStart": "70%",
-        "offsetEnd": "6%"
-      }
-    ],
-    "paddingAll": "none",
-    "paddingTop": "none"
-  }
-}
-
-
-            // --- สิ้นสุดการวาง Code ---
+            contents: {
+                "type": "bubble",
+                "size": "giga",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "image",
+                            "url": "https://img2.pic.in.th/-800-x-600-px-1.png",
+                            "size": "full",
+                            "aspectMode": "fit",
+                            "aspectRatio": "4:3"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "อาจารย์หนุ่ม",
+                                "text": "อาจารย์หนุ่ม 300 บาท + ค่าเด็ก 100 บาท รวม 400 บาท TTB 21222424 ชื่อ บช. Totti"
+                            },
+                            "position": "absolute",
+                            "offsetTop": "72%",
+                            "offsetStart": "16%",
+                            "width": "60px",
+                            "height": "40px"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "อาจารย์แพท",
+                                "text": "อาจารย์แพท 300 บาท + ค่าเด็ก 300 บาท รวม 600 บาท TTB 21222424 ชื่อ บช. Totti"
+                            },
+                            "position": "absolute",
+                            "offsetTop": "52%",
+                            "offsetStart": "30%",
+                            "width": "60px",
+                            "height": "40px"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "อาจารย์ลือ",
+                                "text": "อาจารย์ลือ ประธานฯ 1,000 บาท + ค่าเด็ก 800 บาท รวม 1,800 บาท TTB 21222424 ชื่อ บช. Totti"
+                            },
+                            "position": "absolute",
+                            "offsetTop": "40%",
+                            "offsetStart": "54%",
+                            "width": "60px",
+                            "height": "40px"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "label": "Link Canva",
+                                "uri": "https://www.canva.com/design/DAHBr5zlAzM/LFwGQyVdjxVZd7iyJzj90g/watch?utm_content=DAHBr5zlAzM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h79591bc35e"
+                            },
+                            "position": "absolute",
+                            "offsetTop": "73%",
+                            "offsetStart": "38%",
+                            "width": "100px",
+                            "height": "40px"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "label": "Link LIFF",
+                                "uri": "https://liff.line.me/2009151440-vdon4Ow7"
+                            },
+                            "position": "absolute",
+                            "offsetTop": "89%",
+                            "offsetStart": "70%",
+                            "width": "100px",
+                            "height": "40px"
+                        }
+                    ],
+                    "paddingAll": "none"
+                }
+            }
         }; 
-
 
         function displayMessage(id) {
             document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
@@ -143,11 +136,8 @@
             displayMessage('loadingMsg');
             
             try {
-
-                // -----แก้ไข LiffId ของตัวเองให้ถูกต้อง ------------
-
+                // Initial LIFF
                 await liff.init({ liffId: "2009151440-vdon4Ow7" });  
-
 
                 if (!liff.isLoggedIn()) {
                     liff.login();
@@ -155,26 +145,24 @@
                 }
                 
                 if (!liff.isApiAvailable("shareTargetPicker")) {
-                    throw new Error("API shareTargetPicker ไม่รองรับ (โปรดเปิดในแอป LINE)");
+                    throw new Error("API shareTargetPicker ไม่รองรับ หรือกรุณาเปิดในแอป LINE");
                 }
 
-                document.getElementById("loadingMsg").style.display = "none";
-
+                // สั่งเปิด Share Target Picker ทันที
                 const result = await liff.shareTargetPicker([flexMessage]);
                 
                 if (result) {
                     displayMessage('successMsg');
                     setTimeout(() => liff.closeWindow(), 2000);
                 } else {
- 
+                    // กรณีผู้ใช้กดกากบาทปิดหน้าเลือกเพื่อน
                     liff.closeWindow();
                 }
 
             } catch (err) {
                 console.error("Share Error:", err);
                 const errorMsgElement = document.getElementById('errorMsg');
-                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาดในการแชร์: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
-                
+                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาด: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
                 displayMessage('errorMsg'); 
             }
         }
