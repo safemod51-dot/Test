@@ -38,94 +38,168 @@
     <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
 
     <script>
-        // โครงสร้าง Flex Message ที่ถูกต้อง
         const flexMessage = {
             type: "flex",
             altText: "📚 ประชาสัมพันธ์หนังสือน่าอ่าน",
-            contents: {
-                "type": "bubble",
-                "size": "giga",
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "image",
-                            "url": "https://img2.pic.in.th/-800-x-600-px-1.png",
-                            "size": "full",
-                            "aspectMode": "fit",
-                            "aspectRatio": "4:3"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "อาจารย์หนุ่ม",
-                                "text": "อาจารย์หนุ่ม 300 บาท + ค่าเด็ก 100 บาท รวม 400 บาท TTB 21222424 ชื่อ บช. Totti"
-                            },
-                            "position": "absolute",
-                            "offsetTop": "72%",
-                            "offsetStart": "16%",
-                            "width": "60px",
-                            "height": "40px"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "อาจารย์แพท",
-                                "text": "อาจารย์แพท 300 บาท + ค่าเด็ก 300 บาท รวม 600 บาท TTB 21222424 ชื่อ บช. Totti"
-                            },
-                            "position": "absolute",
-                            "offsetTop": "52%",
-                            "offsetStart": "30%",
-                            "width": "60px",
-                            "height": "40px"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "อาจารย์ลือ",
-                                "text": "อาจารย์ลือ ประธานฯ 1,000 บาท + ค่าเด็ก 800 บาท รวม 1,800 บาท TTB 21222424 ชื่อ บช. Totti"
-                            },
-                            "position": "absolute",
-                            "offsetTop": "40%",
-                            "offsetStart": "54%",
-                            "width": "60px",
-                            "height": "40px"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "uri",
-                                "label": "Link Canva",
-                                "uri": "https://www.canva.com/design/DAHBr5zlAzM/LFwGQyVdjxVZd7iyJzj90g/watch?utm_content=DAHBr5zlAzM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h79591bc35e"
-                            },
-                            "position": "absolute",
-                            "offsetTop": "73%",
-                            "offsetStart": "38%",
-                            "width": "100px",
-                            "height": "40px"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "uri",
-                                "label": "Link LIFF",
-                                "uri": "https://liff.line.me/2009151440-vdon4Ow7"
-                            },
-                            "position": "absolute",
-                            "offsetTop": "89%",
-                            "offsetStart": "70%",
-                            "width": "100px",
-                            "height": "40px"
-                        }
-                    ],
-                    "paddingAll": "none"
-                }
-            }
+            contents:
+	// --- นำ Code ที่ออกแบบแล้วมาวาง ตั้งแต่ส่วนนี้ ---
+{
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://developers-resource.landpress.line.me/fx/img/01_1_cafe.png",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "https://line.me/"
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Brown Cafe",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "icon",
+            "size": "sm",
+            "url": "https://developers-resource.landpress.line.me/fx/img/review_gold_star_28.png"
+          },
+          {
+            "type": "icon",
+            "size": "sm",
+            "url": "https://developers-resource.landpress.line.me/fx/img/review_gold_star_28.png"
+          },
+          {
+            "type": "icon",
+            "size": "sm",
+            "url": "https://developers-resource.landpress.line.me/fx/img/review_gold_star_28.png"
+          },
+          {
+            "type": "icon",
+            "size": "sm",
+            "url": "https://developers-resource.landpress.line.me/fx/img/review_gold_star_28.png"
+          },
+          {
+            "type": "icon",
+            "size": "sm",
+            "url": "https://developers-resource.landpress.line.me/fx/img/review_gray_star_28.png"
+          },
+          {
+            "type": "text",
+            "text": "4.0",
+            "size": "sm",
+            "color": "#999999",
+            "margin": "md",
+            "flex": 0
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Place",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 1
+              },
+              {
+                "type": "text",
+                "text": "Flex Tower, 7-7-4 Midori-ku, Tokyo",
+                "wrap": true,
+                "color": "#666666",
+                "size": "sm",
+                "flex": 5
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Time",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 1
+              },
+              {
+                "type": "text",
+                "text": "10:00 - 23:00",
+                "wrap": true,
+                "color": "#666666",
+                "size": "sm",
+                "flex": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "CALL",
+          "uri": "https://line.me/"
+        }
+      },
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "WEBSITE",
+          "uri": "https://liff.line.me/2009151440-vdon4Ow7"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [],
+        "margin": "sm"
+      }
+    ],
+    "flex": 0
+  }
+}
+
+
+            // --- สิ้นสุดการวาง Code ---
         }; 
+
 
         function displayMessage(id) {
             document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
@@ -136,8 +210,11 @@
             displayMessage('loadingMsg');
             
             try {
-                // Initial LIFF
+
+                // -----แก้ไข LiffId ของตัวเองให้ถูกต้อง ------------
+
                 await liff.init({ liffId: "2009151440-vdon4Ow7" });  
+
 
                 if (!liff.isLoggedIn()) {
                     liff.login();
@@ -145,24 +222,26 @@
                 }
                 
                 if (!liff.isApiAvailable("shareTargetPicker")) {
-                    throw new Error("API shareTargetPicker ไม่รองรับ หรือกรุณาเปิดในแอป LINE");
+                    throw new Error("API shareTargetPicker ไม่รองรับ (โปรดเปิดในแอป LINE)");
                 }
 
-                // สั่งเปิด Share Target Picker ทันที
+                document.getElementById("loadingMsg").style.display = "none";
+
                 const result = await liff.shareTargetPicker([flexMessage]);
                 
                 if (result) {
                     displayMessage('successMsg');
                     setTimeout(() => liff.closeWindow(), 2000);
                 } else {
-                    // กรณีผู้ใช้กดกากบาทปิดหน้าเลือกเพื่อน
+ 
                     liff.closeWindow();
                 }
 
             } catch (err) {
                 console.error("Share Error:", err);
                 const errorMsgElement = document.getElementById('errorMsg');
-                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาด: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
+                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาดในการแชร์: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
+                
                 displayMessage('errorMsg'); 
             }
         }
