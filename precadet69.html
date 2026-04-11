@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Share Flex Message Ready</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #eef2ff;
+        }
+        .msg {
+            display: none;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+        #errorMsg { 
+            color: #d9534f;
+            word-break: break-word;
+            max-width: 80vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="msg" id="loadingMsg">⏳ กำลังเตรียมการแชร์...</div>
+    <div class="msg" id="successMsg">✅ แชร์ให้เพื่อน ๆ สำเร็จแล้ว</div>
+    <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
+
+    <script>
+        // กำหนด Flex Message (Carousel Structure ที่ถูกต้องแล้ว)
+        const flexMessage = {
+            type: "flex",
+            altText: "ประชาสัมพันธ์!! กสรทำสัญญาออนไลน์เข้าเป็น นตท.",
+            contents: 
+          // วาง Code ที่ดำเนินการทำใน developers.line  เรียบร้อยแล้ว 
+  {
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://img1.pic.in.th/images/-.-2.png",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "300:424",
+        "align": "center"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "  ",
+          "uri": "https://canva.link/gotobannaafaps69"
+        },
+        "position": "absolute",
+        "offsetTop": "27%",
+        "offsetStart": "7%",
+        "offsetBottom": "54%",
+        "offsetEnd": "66%"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "  ",
+          "uri": "https://drive.google.com/file/d/1hwRp9SOclYfxnxoPG1CAPHjpyzC_V1CH/view?usp=drive_link"
+        },
+        "position": "absolute",
+        "offsetTop": "27%",
+        "offsetStart": "37%",
+        "offsetBottom": "54%",
+        "offsetEnd": "36%"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "  ",
+          "uri": "https://drive.google.com/file/d/1p5CUI80N0KAiEVEuyZrkyeO3d9GrE6zM/view?usp=sharing"
+        },
+        "position": "absolute",
+        "offsetTop": "27%",
+        "offsetStart": "66%",
+        "offsetBottom": "54%",
+        "offsetEnd": "7%"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "  ",
+          "uri": "https://www.afapsschool.com/af69/index_register69?groupkey=1"
+        },
+        "position": "absolute",
+        "offsetTop": "56%",
+        "offsetStart": "7%",
+        "offsetBottom": "32%",
+        "offsetEnd": "66%"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "  ",
+          "uri": "https://www.afapsschool.com/af69/index_register69?groupkey=2"
+        },
+        "position": "absolute",
+        "offsetTop": "56%",
+        "offsetStart": "37%",
+        "offsetBottom": "32%",
+        "offsetEnd": "37%"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "  ",
+          "uri": "https://www.afapsschool.com/af69/index_register69?groupkey=3"
+        },
+        "position": "absolute",
+        "offsetTop": "70%",
+        "offsetStart": "7%",
+        "offsetBottom": "18%",
+        "offsetEnd": "66%"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "  ",
+          "uri": "https://www.afapsschool.com/af69/index_register69?groupkey=4"
+        },
+        "position": "absolute",
+        "offsetTop": "70%",
+        "offsetStart": "37%",
+        "offsetBottom": "18%",
+        "offsetEnd": "37%"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "  ",
+          "uri": "https://www.afapsschool.com/af69/go2school"
+        },
+        "position": "absolute",
+        "offsetTop": "56%",
+        "offsetStart": "66%",
+        "offsetBottom": "18%",
+        "offsetEnd": "7%"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "  ",
+          "uri": "https://liff.line.me/2007236505-SJlLpqIz"
+        },
+        "position": "absolute",
+        "offsetTop": "87%",
+        "offsetStart": "20%",
+        "offsetBottom": "3%",
+        "offsetEnd": "20%"
+      }
+    ],
+    "alignItems": "center",
+    "paddingAll": "0%",
+    "paddingTop": "0%",
+    "paddingBottom": "0%",
+    "paddingStart": "0%",
+    "paddingEnd": "0%"
+  }
+}                
+
+                  ;  //อย่าลืม ;  สำคัญ
+
+        // ฟังก์ชันช่วยในการสลับการแสดงข้อความ
+        function displayMessage(id) {
+            document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        async function main() {
+            displayMessage('loadingMsg');
+            
+            try {
+
+
+                          // *** 1. สำคัญ: แก้ไข "LIFF ID 2007236505-Lbr300GA ของนักเรียนให้ถูกต้อง " ***
+
+                await liff.init({ liffId: "2007236505-SJlLpqIz" });  
+
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                    return;
+                }
+                
+                // ตรวจสอบความพร้อมของ API แชร์
+                if (!liff.isApiAvailable("shareTargetPicker")) {
+                    throw new Error("API shareTargetPicker ไม่รองรับ (โปรดเปิดในแอป LINE)");
+                }
+
+                document.getElementById("loadingMsg").style.display = "none";
+
+                // เปิดตัวเลือกการแชร์
+                const result = await liff.shareTargetPicker([flexMessage]);
+                
+                if (result) {
+                    displayMessage('successMsg');
+                    setTimeout(() => liff.closeWindow(), 2000);
+                } else {
+                    // ผู้ใช้กด 'ยกเลิก' การแชร์
+                    liff.closeWindow();
+                }
+
+            } catch (err) {
+                console.error("Share Error:", err);
+                
+                // แสดงข้อความ Error ที่ละเอียดขึ้น
+                const errorMsgElement = document.getElementById('errorMsg');
+                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาดในการแชร์: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
+                
+                displayMessage('errorMsg'); 
+                setTimeout(() => liff.closeWindow(), 5000); 
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
